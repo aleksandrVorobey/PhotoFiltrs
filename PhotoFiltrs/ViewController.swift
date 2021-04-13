@@ -24,6 +24,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate {
     }
     
     @IBAction func editAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Editor", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "Editor") as! EditorViewController
+        vc.picture = self.picture.image
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
