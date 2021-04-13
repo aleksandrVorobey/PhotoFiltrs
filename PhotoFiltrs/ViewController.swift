@@ -7,13 +7,31 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate {
 
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var picture: UIImageView!
+    
+    public var imagePicker: ImagePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
-
-
+    
+    @IBAction func addAction(_ sender: Any) {
+        self.imagePicker.present(from: sender as! UIView)
+    }
+    
+    @IBAction func editAction(_ sender: Any) {
+    }
+    
 }
 
+extension ViewController: ImagePickerDelegate {
+    func didSelect(image: UIImage?) {
+        self.picture.image = image
+    }
+    
+    
+}
